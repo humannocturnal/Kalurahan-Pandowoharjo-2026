@@ -1,113 +1,199 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.admin')
 
-    <title>Edit Dukuh</title>
+@section('title', 'Edit Dukuh')
 
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+@section('content')
 
-<body class="bg-gray-100">
+<div class="mx-auto max-w-4xl">
 
-    <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+    {{-- HEADER --}}
+    <div class="mb-6">
 
         <a
             href="{{ route('admin.dukuh') }}"
-            class="inline-flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700"
+            class="mb-4 inline-flex items-center gap-2
+                   text-sm font-semibold text-green-700
+                   hover:text-green-800"
         >
-            ← Kembali ke Daftar Dukuh
+            <i class="fa-solid fa-arrow-left"></i>
+            Kembali ke Daftar Dukuh
         </a>
 
-        <div class="mt-5 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h1 class="text-3xl font-bold text-gray-900">
+            Edit Dukuh
+        </h1>
 
-            <h1 class="text-2xl font-bold text-gray-900">
-                Edit Dukuh
-            </h1>
+        <p class="mt-2 text-sm text-gray-500">
+            Perbarui data dukuh Kalurahan Pandowoharjo.
+        </p>
 
-            <p class="mt-1 text-sm text-gray-500">
-                Ubah data dukuh yang dipilih.
-            </p>
+    </div>
 
-            @if ($errors->any())
-                <div class="mt-5 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-                    <ul class="list-disc space-y-1 pl-5">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
-            <form
-                method="POST"
-                action="{{ route('admin.dukuh.update', $dukuh->id) }}"
-                class="mt-6 space-y-5"
-            >
-                @csrf
-                @method('PUT')
+    {{-- CARD FORM --}}
+    <div class="rounded-2xl border border-gray-200
+                bg-white p-6 shadow-sm sm:p-8">
 
-                <div>
-                    <label class="mb-2 block text-sm font-semibold text-gray-700">
-                        Nama Dukuh
-                    </label>
+        {{-- ERROR --}}
+        @if ($errors->any())
 
-                    <input
-                        type="text"
-                        name="nama_dukuh"
-                        value="{{ old('nama_dukuh', $dukuh->nama_dukuh) }}"
-                        required
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
-                    >
-                </div>
+            <div class="mb-6 rounded-xl border border-red-200
+                        bg-red-50 p-4 text-sm text-red-700">
 
-                <div>
-                    <label class="mb-2 block text-sm font-semibold text-gray-700">
-                        Nama Kepala Dukuh
-                    </label>
+                <p class="mb-2 font-semibold">
+                    Periksa kembali data berikut:
+                </p>
 
-                    <input
-                        type="text"
-                        name="nama_kepala_dukuh"
-                        value="{{ old('nama_kepala_dukuh', $dukuh->nama_kepala_dukuh) }}"
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
-                    >
-                </div>
+                <ul class="list-disc space-y-1 pl-5">
 
-                <div>
-                    <label class="mb-2 block text-sm font-semibold text-gray-700">
-                        Alamat
-                    </label>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
 
-                    <textarea
-                        name="alamat"
-                        rows="4"
-                        class="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
-                    >{{ old('alamat', $dukuh->alamat) }}</textarea>
-                </div>
+                </ul>
 
-                <div class="flex gap-3 pt-2">
-                    <button
-                        type="submit"
-                        class="rounded-xl bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-700"
-                    >
-                        Simpan Perubahan
-                    </button>
+            </div>
 
-                    <a
-                        href="{{ route('admin.dukuh') }}"
-                        class="rounded-xl bg-gray-200 px-5 py-3 font-semibold text-gray-700 transition hover:bg-gray-300"
-                    >
-                        Batal
-                    </a>
-                </div>
+        @endif
 
-            </form>
 
-        </div>
+        <form
+            action="{{ route('admin.dukuh.update', $dukuh->id) }}"
+            method="POST"
+            class="space-y-6"
+        >
 
-    </main>
+            @csrf
+            @method('PUT')
 
-</body>
-</html>
+
+            {{-- NAMA DUKUH --}}
+            <div>
+
+                <label
+                    for="nama_dukuh"
+                    class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                    Nama Dukuh
+                    <span class="text-red-500">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="nama_dukuh"
+                    id="nama_dukuh"
+                    value="{{ old('nama_dukuh', $dukuh->nama_dukuh) }}"
+                    required
+                    class="w-full rounded-xl border border-gray-300
+                           px-4 py-3 outline-none transition
+                           focus:border-green-500
+                           focus:ring-2 focus:ring-green-100"
+                >
+
+                @error('nama_dukuh')
+                    <p class="mt-2 text-sm text-red-600">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- NAMA KEPALA DUKUH --}}
+            <div>
+
+                <label
+                    for="nama_kepala_dukuh"
+                    class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                    Nama Kepala Dukuh
+                </label>
+
+                <input
+                    type="text"
+                    name="nama_kepala_dukuh"
+                    id="nama_kepala_dukuh"
+                    value="{{ old(
+                        'nama_kepala_dukuh',
+                        $dukuh->nama_kepala_dukuh
+                    ) }}"
+                    class="w-full rounded-xl border border-gray-300
+                           px-4 py-3 outline-none transition
+                           focus:border-green-500
+                           focus:ring-2 focus:ring-green-100"
+                >
+
+                @error('nama_kepala_dukuh')
+                    <p class="mt-2 text-sm text-red-600">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- ALAMAT --}}
+            <div>
+
+                <label
+                    for="alamat"
+                    class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                    Alamat
+                </label>
+
+                <textarea
+                    name="alamat"
+                    id="alamat"
+                    rows="4"
+                    class="w-full rounded-xl border border-gray-300
+                           px-4 py-3 outline-none transition
+                           focus:border-green-500
+                           focus:ring-2 focus:ring-green-100"
+                >{{ old('alamat', $dukuh->alamat) }}</textarea>
+
+                @error('alamat')
+                    <p class="mt-2 text-sm text-red-600">
+                        {{ $message }}
+                    </p>
+                @enderror
+
+            </div>
+
+
+            {{-- BUTTON --}}
+            <div class="flex flex-wrap gap-3
+                        border-t border-gray-100 pt-6">
+
+                <button
+                    type="submit"
+                    class="inline-flex items-center gap-2
+                           rounded-xl bg-green-600
+                           px-6 py-3 font-semibold
+                           text-white transition
+                           hover:bg-green-700"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Simpan Perubahan
+                </button>
+
+                <a
+                    href="{{ route('admin.dukuh') }}"
+                    class="inline-flex items-center gap-2
+                           rounded-xl bg-gray-200
+                           px-6 py-3 font-semibold
+                           text-gray-700 transition
+                           hover:bg-gray-300"
+                >
+                    Batal
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+@endsection
