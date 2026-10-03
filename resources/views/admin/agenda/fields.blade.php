@@ -281,6 +281,112 @@
 
 </div>
 
+{{-- ========================================== --}}
+{{-- KOORDINAT --}}
+{{-- ========================================== --}}
+
+<div class="grid gap-5 sm:grid-cols-2">
+
+    {{-- LATITUDE --}}
+
+    <div>
+
+        <label
+            for="latitude"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+        >
+            Latitude
+        </label>
+
+        <input
+            type="number"
+            step="any"
+            min="-90"
+            max="90"
+            name="latitude"
+            id="latitude"
+            value="{{ old(
+                'latitude',
+                $editing ? $agenda->latitude : ''
+            ) }}"
+            placeholder="-7.7161234"
+            class="w-full rounded-xl border border-gray-300
+                   px-4 py-3 outline-none transition
+                   focus:border-green-500
+                   focus:ring-2 focus:ring-green-100"
+        >
+
+        @error('latitude')
+            <p class="mt-2 text-sm text-red-600">
+                {{ $message }}
+            </p>
+        @enderror
+
+    </div>
+
+
+    {{-- LONGITUDE --}}
+
+    <div>
+
+        <label
+            for="longitude"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+        >
+            Longitude
+        </label>
+
+        <input
+            type="number"
+            step="any"
+            min="-180"
+            max="180"
+            name="longitude"
+            id="longitude"
+            value="{{ old(
+                'longitude',
+                $editing ? $agenda->longitude : ''
+            ) }}"
+            placeholder="110.3634567"
+            class="w-full rounded-xl border border-gray-300
+                   px-4 py-3 outline-none transition
+                   focus:border-green-500
+                   focus:ring-2 focus:ring-green-100"
+        >
+
+        @error('longitude')
+            <p class="mt-2 text-sm text-red-600">
+                {{ $message }}
+            </p>
+        @enderror
+
+    </div>
+
+</div>
+
+{{-- ========================================== --}}
+{{-- PETA LOKASI AGENDA --}}
+{{-- ========================================== --}}
+
+<x-location-picker
+    latitude-id="latitude"
+    longitude-id="longitude"
+
+    :latitude="old(
+        'latitude',
+        $editing ? $agenda->latitude : null
+    )"
+
+    :longitude="old(
+        'longitude',
+        $editing ? $agenda->longitude : null
+    )"
+/>
+
+<p class="text-xs text-gray-500">
+    Masukkan titik lokasi agenda jika tersedia.
+</p>
+
 
 {{-- ========================================== --}}
 {{-- STATUS --}}

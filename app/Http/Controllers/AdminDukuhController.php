@@ -42,12 +42,26 @@ class AdminDukuhController extends Controller
             'nama_dukuh' => 'required|string|max:255',
             'nama_kepala_dukuh' => 'nullable|string|max:255',
             'alamat' => 'nullable|string',
+
+            'latitude' => [
+                'nullable',
+                'numeric',
+                'between:-90,90',
+            ],
+
+            'longitude' => [
+                'nullable',
+                'numeric',
+                'between:-180,180',
+            ],
         ]);
 
         Dukuh::create([
             'nama_dukuh' => $request->nama_dukuh,
             'nama_kepala_dukuh' => $request->nama_kepala_dukuh,
             'alamat' => $request->alamat,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
         return redirect()
@@ -68,6 +82,18 @@ class AdminDukuhController extends Controller
             'nama_dukuh' => 'required|string|max:255',
             'nama_kepala_dukuh' => 'nullable|string|max:255',
             'alamat' => 'nullable|string',
+
+            'latitude' => [
+                'nullable',
+                'numeric',
+                'between:-90,90',
+            ],
+
+            'longitude' => [
+                'nullable',
+                'numeric',
+                'between:-180,180',
+            ],
         ]);
 
         $dukuh = Dukuh::findOrFail($id);
@@ -76,6 +102,8 @@ class AdminDukuhController extends Controller
             'nama_dukuh' => $request->nama_dukuh,
             'nama_kepala_dukuh' => $request->nama_kepala_dukuh,
             'alamat' => $request->alamat,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
         return redirect()

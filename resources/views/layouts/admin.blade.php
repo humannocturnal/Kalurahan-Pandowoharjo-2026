@@ -21,6 +21,17 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
+    {{-- LEAFLET CSS --}}
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    {{-- LEAFLET JS --}}
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+    @stack('scripts')
 
     @stack('styles')
 
@@ -596,6 +607,10 @@
 
 </script>
 
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
 
 @stack('scripts')
 

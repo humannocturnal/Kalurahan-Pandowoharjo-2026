@@ -60,6 +60,17 @@ class AdminAgendaController extends Controller
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
             'lokasi' => 'required|string|max:255',
+            'latitude' => [
+                'nullable',
+                'numeric',
+                'between:-90,90',
+            ],
+
+            'longitude' => [
+                'nullable',
+                'numeric',
+                'between:-180,180',
+            ],
             'status' => 'required|in:direncanakan,selesai,dibatalkan',
 
             'fotos' => 'nullable|array',
@@ -118,6 +129,17 @@ class AdminAgendaController extends Controller
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
             'lokasi' => 'required|string|max:255',
+            'latitude' => [
+                'nullable',
+                'numeric',
+                'between:-90,90',
+            ],
+
+            'longitude' => [
+                'nullable',
+                'numeric',
+                'between:-180,180',
+            ],
             'status' => 'required|in:direncanakan,selesai,dibatalkan',
 
             'fotos' => 'nullable|array',

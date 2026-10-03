@@ -19,11 +19,15 @@ class Agenda extends Model
         'waktu_mulai',
         'waktu_selesai',
         'lokasi',
+        'latitude',
+        'longitude',
         'status',
     ];
 
     protected $casts = [
         'tanggal' => 'date',
+        'latitude' => 'decimal:7',
+        'longitude' => 'decimal:7',
         'waktu_mulai' => 'datetime:H:i',
         'waktu_selesai' => 'datetime:H:i',
     ];

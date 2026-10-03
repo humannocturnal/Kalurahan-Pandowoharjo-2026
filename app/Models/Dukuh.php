@@ -15,6 +15,13 @@ class Dukuh extends Model
         'nama_dukuh',
         'nama_kepala_dukuh',
         'alamat',
+        'latitude',
+        'longitude',
+    ];
+
+    protected $casts = [
+    'latitude' => 'decimal:7',
+    'longitude' => 'decimal:7',
     ];
 
     /**

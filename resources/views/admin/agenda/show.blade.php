@@ -320,6 +320,23 @@
 
         </div>
 
+        {{-- ========================================== --}}
+        {{-- PETA LOKASI AGENDA --}}
+        {{-- ========================================== --}}
+
+        <div class="mt-8">
+
+            <h3 class="mb-4 text-xl font-bold text-gray-900">
+                Lokasi Agenda
+            </h3>
+
+            <x-location-map
+                :latitude="$agenda->latitude"
+                :longitude="$agenda->longitude"
+            />
+
+        </div>
+
 
         {{-- GALERI FOTO --}}
         <div class="mt-10">

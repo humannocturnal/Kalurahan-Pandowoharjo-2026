@@ -20,10 +20,14 @@ class Kegiatan extends Model
         'waktu_mulai',
         'waktu_selesai',
         'lokasi',
+        'latitude',
+        'longitude',
     ];
 
     protected $casts = [
         'tanggal' => 'date',
+        'latitude' => 'decimal:7',
+        'longitude' => 'decimal:7',
     ];
 
     public function dukuh()
