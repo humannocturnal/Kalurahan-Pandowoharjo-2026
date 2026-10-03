@@ -26,8 +26,11 @@ Route::post('/login', [AuthController::class, 'login'])
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/admin', [AdminController::class, 'index'])
-        ->name('admin.dashboard');
+    Route::get('/admin', [
+        AdminController::class,
+        'index'
+    ])->name('admin.dashboard');
+
 
     Route::get('/admin/dukuh', [
         AdminDukuhController::class,
