@@ -155,6 +155,23 @@
 
         </div>
 
+        {{-- ========================================== --}}
+        {{-- LOKASI KEGIATAN --}}
+        {{-- ========================================== --}}
+
+        <div class="mt-8">
+
+            <h3 class="mb-4 text-xl font-bold text-gray-900">
+                Lokasi Kegiatan
+            </h3>
+
+            <x-location-map
+                :latitude="$kegiatan->latitude"
+                :longitude="$kegiatan->longitude"
+            />
+
+        </div>
+
 
         {{-- AGENDA ASAL --}}
 

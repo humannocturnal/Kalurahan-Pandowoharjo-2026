@@ -244,6 +244,62 @@
 
                 </div>
 
+                {{-- ========================================== --}}
+                {{-- LOKASI AGENDA PADA PETA --}}
+                {{-- ========================================== --}}
+
+                <div class="mt-10">
+
+                    <div class="mb-4">
+
+                        <h3 class="text-xl font-bold text-gray-900">
+                            Lokasi Agenda
+                        </h3>
+
+                        <p class="mt-1 text-sm text-gray-500">
+                            Lokasi pelaksanaan agenda pada peta.
+                        </p>
+
+                    </div>
+
+
+                    {{-- INFORMASI LOKASI --}}
+                    <div
+                        class="mb-4 flex items-start gap-3
+                            rounded-xl bg-green-50
+                            px-4 py-3 text-sm text-green-800"
+                    >
+
+                        <i class="fa-solid fa-location-dot
+                                mt-1 text-green-600"></i>
+
+                        <div>
+
+                            <p class="font-semibold">
+                                {{ $agenda->lokasi ?: 'Lokasi tidak tersedia' }}
+                            </p>
+
+                            @if ($agenda->dukuh)
+
+                                <p class="mt-1 text-xs text-green-700">
+                                    Dukuh {{ $agenda->dukuh->nama_dukuh }}
+                                </p>
+
+                            @endif
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- OPENSTREETMAP --}}
+                    <x-location-map
+                        :latitude="$agenda->latitude"
+                        :longitude="$agenda->longitude"
+                    />
+
+                </div>
+
 
                 {{-- DESKRIPSI --}}
 
