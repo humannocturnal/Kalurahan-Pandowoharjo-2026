@@ -27,6 +27,46 @@
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     />
 
+    <style>
+        /* Turunkan seluruh layer Leaflet */
+        .leaflet-container,
+        .leaflet-pane,
+        .leaflet-top,
+        .leaflet-bottom,
+        .leaflet-control {
+            z-index: 0 !important;
+        }
+
+        .leaflet-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-map-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-tile-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-overlay-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-shadow-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-marker-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-tooltip-pane,
+        .leaflet-popup-pane {
+            z-index: 1 !important;
+        }
+    </style>
+
     {{-- LEAFLET JS --}}
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">

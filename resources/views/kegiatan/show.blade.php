@@ -248,7 +248,7 @@
 
                                     @if ($kegiatan->waktu_mulai)
 
-                                        {{ substr($kegiatan->waktu_mulai, 11, 5) }}
+                                        {{ substr($kegiatan->waktu_mulai, 0, 5) }}
 
                                     @else
 
@@ -260,7 +260,7 @@
                                     @if ($kegiatan->waktu_selesai)
 
                                         -
-                                        {{ substr($kegiatan->waktu_selesai, 11, 5) }}
+                                        {{ substr($kegiatan->waktu_selesai, 0, 5) }}
 
                                     @endif
 
@@ -332,6 +332,8 @@
 
 
                     </div>
+
+                    
 
 
                 </div>
@@ -475,7 +477,61 @@
                 </div>
 
 
+{{-- ========================================== --}}
+{{-- LOKASI KEGIATAN PADA PETA --}}
+{{-- ========================================== --}}
 
+<div class="mt-10">
+
+    <div class="mb-4">
+
+        <h3 class="text-xl font-bold text-gray-900">
+            Lokasi Kegiatan
+        </h3>
+
+        <p class="mt-1 text-sm text-gray-500">
+            Lokasi pelaksanaan kegiatan pada peta.
+        </p>
+
+    </div>
+
+
+    {{-- INFORMASI LOKASI --}}
+    <div
+        class="mb-4 flex items-start gap-3
+               rounded-xl bg-orange-50
+               px-4 py-3 text-sm text-orange-800"
+    >
+
+        <i class="fa-solid fa-location-dot
+                  mt-1 text-orange-600"></i>
+
+        <div>
+
+            <p class="font-semibold">
+                {{ $kegiatan->lokasi ?: 'Lokasi tidak tersedia' }}
+            </p>
+
+            @if ($kegiatan->dukuh)
+
+                <p class="mt-1 text-xs text-orange-700">
+                    Dukuh {{ $kegiatan->dukuh->nama_dukuh }}
+                </p>
+
+            @endif
+
+        </div>
+
+    </div>
+
+
+    {{-- OPENSTREETMAP --}}
+    <x-location-map
+        :latitude="$kegiatan->latitude"
+        :longitude="$kegiatan->longitude"
+    />
+
+</div>
 
                 {{-- ================================== --}}
                 {{-- DESKRIPSI --}}

@@ -18,6 +18,43 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    {{-- LEAFLET CSS --}}
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <style>
+        /*
+        |--------------------------------------------------------------------------
+        | LEAFLET Z-INDEX
+        |--------------------------------------------------------------------------
+        | Supaya peta tidak menutupi header, navbar, modal, dan elemen lainnya.
+        */
+
+        .leaflet-container,
+        .leaflet-pane,
+        .leaflet-top,
+        .leaflet-bottom,
+        .leaflet-control {
+            z-index: 0 !important;
+        }
+
+        .leaflet-map-pane,
+        .leaflet-tile-pane,
+        .leaflet-overlay-pane,
+        .leaflet-shadow-pane,
+        .leaflet-marker-pane {
+            z-index: 0 !important;
+        }
+
+        .leaflet-tooltip-pane,
+        .leaflet-popup-pane {
+            z-index: 1 !important;
+        }
+    </style>
+    @stack('styles')
+
 </head>
 
 <body class="min-h-screen flex flex-col bg-gray-50 text-gray-800">
@@ -346,6 +383,12 @@
         });
 
     </script>
+
+    {{-- LEAFLET JS --}}
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
 
     @stack('scripts')
 

@@ -24,7 +24,7 @@
 @endphp
 
 
-<div class="location-picker">
+<div class="location-picker" style="z-index: 0;">
 
     <div class="mb-3">
 
@@ -44,11 +44,10 @@
 
     <div
         id="{{ $mapId }}"
-        class="h-[400px] w-full
-               overflow-hidden rounded-2xl
-               border border-gray-300"
+        class="relative z-0 h-[400px] w-full
+            overflow-hidden rounded-2xl
+            border border-gray-300"
     ></div>
-
 
     {{-- INFO KOORDINAT --}}
 
