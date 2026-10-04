@@ -157,6 +157,8 @@ class AdminAgendaController extends Controller
             'waktu_selesai' => $request->waktu_selesai,
             'lokasi' => $request->lokasi,
             'status' => $request->status,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
         if ($request->hasFile('fotos')) {
@@ -169,6 +171,8 @@ class AdminAgendaController extends Controller
                     'agenda_id' => $agenda->id,
                     'foto' => $path,
                     'keterangan' => null,
+                    'latitude' => $request->latitude,
+                    'longitude' => $request->longitude,
                 ]);
             }
         }

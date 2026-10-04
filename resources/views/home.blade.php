@@ -1,5 +1,83 @@
 @extends('layouts.pengunjung')
 
+@push('styles')
+
+<link
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/skeleton.css"
+    rel="stylesheet"
+/>
+
+<link
+    href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/themes/classic/theme.css"
+    rel="stylesheet"
+/>
+
+<style>
+
+    /*
+    |--------------------------------------------------------------------------
+    | FULLCALENDAR HOME
+    |--------------------------------------------------------------------------
+    */
+
+    #homeCalendar {
+        font-size: 11px;
+    }
+
+
+    #homeCalendar .fc-toolbar-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #111827;
+    }
+
+    #homeCalendar .fc-toolbar {
+        margin-bottom: 12px;
+    }
+
+
+    #homeCalendar .fc-button {
+        font-size: 16px;
+        font-weight: 700;
+        padding: 4px 10px;
+    }
+
+
+    #homeCalendar .fc-col-header-cell-cushion {
+        font-size: 10px;
+        font-weight: 600;
+        color: #4b5563;
+    }
+
+
+    #homeCalendar .fc-daygrid-day-number {
+        padding: 4px;
+        font-size: 10px;
+        color: #374151;
+    }
+
+
+    #homeCalendar .fc-event {
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 1px 2px;
+        font-size: 9px;
+    }
+
+
+    #homeCalendar .fc-day-today {
+        background: #f0fdf4 !important;
+    }
+
+
+    #homeCalendar a {
+        text-decoration: none;
+    }
+
+</style>
+
+@endpush
+
 @section('title', 'Home - Kalurahan Pandowoharjo')
 
 @section('content')
@@ -10,9 +88,9 @@
 
 <section class="bg-gradient-to-b from-green-50 to-gray-50 py-14 sm:py-20">
 
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div class="mx-auto max-w-3xl text-center">
+        <div class="mx-auto text-center">
 
             <div
                 class="inline-flex items-center gap-2
@@ -33,13 +111,185 @@
                        sm:text-4xl lg:text-5xl"
             >
 
-                Selamat Datang di
+                {{-- ========================================== --}}
+                {{-- HERO + KALENDER --}}
+                {{-- ========================================== --}}
 
-                <span class="text-green-700">
+                <section class="mb-10">
 
-                    Kalurahan Pandowoharjo
+                    <div class="grid gap-6 xl:grid-cols-3">
 
-                </span>
+
+                        {{-- ====================================== --}}
+                        {{-- SELAMAT DATANG - 2/3 --}}
+                        {{-- ====================================== --}}
+
+                        <div
+                            class="relative overflow-hidden
+                                rounded-3xl bg-gradient-to-br
+                                from-green-700 via-green-600
+                                to-green-500
+                                p-7 text-white shadow-sm
+                                sm:p-10 xl:col-span-2"
+                        >
+
+                            {{-- DECORATION --}}
+
+                            <div
+                                class="absolute -right-16 -top-16
+                                    h-52 w-52 rounded-full
+                                    bg-white/10"
+                            ></div>
+
+                            <div
+                                class="absolute -bottom-20 right-20
+                                    h-44 w-44 rounded-full
+                                    bg-white/10"
+                            ></div>
+
+
+                            <div class="relative z-10 flex h-full flex-col items-center justify-center text-center">
+
+                                <div
+                                    class="mb-6 flex h-14 w-14
+                                        items-center justify-center
+                                        rounded-2xl bg-white/15
+                                        text-2xl backdrop-blur"
+                                >
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+
+
+                                <p
+                                    class="mb-2 text-sm font-semibold
+                                        uppercase tracking-wider
+                                        text-green-100"
+                                >
+                                    Sistem Informasi
+                                </p>
+
+
+                                <h1
+                                    class="max-w-2xl text-3xl
+                                        font-bold leading-tight
+                                        sm:text-4xl lg:text-5xl"
+                                >
+                                    Selamat Datang di
+                                    Kalurahan Pandowoharjo
+                                </h1>
+
+
+                                <p
+                                    class="mt-5 max-w-2xl
+                                        text-sm leading-7
+                                        text-green-50
+                                        sm:text-base"
+                                >
+                                    Temukan informasi agenda dan kegiatan
+                                    yang dilaksanakan di wilayah
+                                    Kalurahan Pandowoharjo.
+                                </p>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                        {{-- ====================================== --}}
+                        {{-- FULLCALENDAR - 1/3 --}}
+                        {{-- ====================================== --}}
+
+                        <div
+                            class="rounded-3xl border
+                                border-gray-200
+                                bg-white p-5 shadow-sm"
+                        >
+
+                            <div class="mb-4">
+
+                                <div class="flex items-center gap-3">
+
+                                    <div
+                                        class="flex h-11 w-11
+                                            items-center justify-center
+                                            rounded-xl bg-green-100
+                                            text-green-700"
+                                    >
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                    </div>
+
+
+                                    <div>
+
+                                        <h2
+                                            class="font-bold text-gray-900"
+                                        >
+                                            Kalender
+                                        </h2>
+
+                                        <p
+                                            class="text-xs text-gray-500"
+                                        >
+                                            Agenda & kegiatan bulan ini
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- LEGENDA --}}
+
+                            <div
+                                class="mb-4 flex flex-wrap
+                                    items-center gap-4
+                                    border-y border-gray-100
+                                    py-3 text-xs"
+                            >
+
+                                <div class="flex items-center gap-2">
+
+                                    <span
+                                        class="h-3 w-3 rounded-full
+                                            bg-green-600"
+                                    ></span>
+
+                                    <span class="text-gray-600">
+                                        Agenda
+                                    </span>
+
+                                </div>
+
+
+                                <div class="flex items-center gap-2">
+
+                                    <span
+                                        class="h-3 w-3 rounded-full
+                                            bg-orange-600"
+                                    ></span>
+
+                                    <span class="text-gray-600">
+                                        Kegiatan
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            {{-- CALENDAR --}}
+
+                            <div id="homeCalendar"></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
 
             </h1>
 
@@ -48,13 +298,6 @@
                        text-base leading-relaxed
                        text-gray-600 sm:text-lg"
             >
-
-                Sistem informasi manajemen agenda dan kegiatan
-                Kalurahan Pandowoharjo.
-
-                Temukan informasi agenda yang akan dilaksanakan
-                serta berbagai kegiatan yang telah berlangsung
-                di lingkungan kalurahan.
 
             </p>
 
@@ -688,3 +931,209 @@
 </section>
 
 @endsection
+
+@push('scripts')
+
+{{-- FULLCALENDAR --}}
+<script
+    src="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/all/global.js">
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const calendarElement =
+        document.getElementById('homeCalendar');
+
+
+    if (!calendarElement) {
+        return;
+    }
+
+
+    const events =
+        @json($calendarEvents);
+
+
+    const calendar = new FullCalendar.Calendar(
+        calendarElement,
+        {
+
+            /*
+            |--------------------------------------------------------------------------
+            | MONTH VIEW
+            |--------------------------------------------------------------------------
+            */
+
+            initialView: 'dayGridMonth',
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | BULAN BERJALAN
+            |--------------------------------------------------------------------------
+            |
+            | Tanpa initialDate khusus, FullCalendar otomatis membuka
+            | tanggal/bulan saat ini.
+            |
+            */
+
+            headerToolbar: {
+
+                left: 'prev',
+
+                center: 'title',
+
+                right: 'next'
+
+            },
+
+            headerToolbar: {
+                left: 'prev',
+                center: 'title',
+                right: 'next'
+            },
+
+            buttonText: {
+                prev: '<',
+                next: '>'
+            },
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | LOCALE
+            |--------------------------------------------------------------------------
+            */
+
+            locale: 'id',
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | UKURAN
+            |--------------------------------------------------------------------------
+            */
+
+            height: 'auto',
+
+            contentHeight: 'auto',
+
+            aspectRatio: 1,
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | EVENTS
+            |--------------------------------------------------------------------------
+            */
+
+            events: events,
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TAMPILKAN MAKSIMAL EVENT
+            |--------------------------------------------------------------------------
+            */
+
+            dayMaxEvents: 2,
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TIDAK BISA EDIT
+            |--------------------------------------------------------------------------
+            */
+
+            editable: false,
+
+            selectable: false,
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | EVENT CLICK
+            |--------------------------------------------------------------------------
+            */
+
+            eventClick: function (info) {
+
+                /*
+                | URL sudah diberikan dari Laravel.
+                | Biarkan FullCalendar membuka halaman detail.
+                */
+
+                if (info.event.url) {
+
+                    info.jsEvent.preventDefault();
+
+                    window.location.href =
+                        info.event.url;
+
+                }
+
+            },
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | TOOLTIP SEDERHANA
+            |--------------------------------------------------------------------------
+            */
+
+            eventDidMount: function (info) {
+
+                const type =
+                    info.event.extendedProps.type ?? '';
+
+                const lokasi =
+                    info.event.extendedProps.lokasi ?? '-';
+
+                const dukuh =
+                    info.event.extendedProps.dukuh ?? '-';
+
+
+                // WARNA EVENT BERDASARKAN TYPE
+                if (type.toLowerCase() === 'agenda') {
+
+                    info.el.style.color = '#16a34a';
+                    info.el.style.backgroundColor = 'transparent';
+                    info.el.style.borderColor = 'transparent';
+                    info.el.style.fontWeight = '600';
+
+                } else if (type.toLowerCase() === 'kegiatan') {
+
+                    info.el.style.color = '#ea580c';
+                    info.el.style.backgroundColor = 'transparent';
+                    info.el.style.borderColor = 'transparent';
+                    info.el.style.fontWeight = '600';
+
+                }
+
+
+                // TOOLTIP
+                info.el.setAttribute(
+                    'title',
+                    type +
+                    ': ' +
+                    info.event.title +
+                    '\nLokasi: ' +
+                    lokasi +
+                    '\nDukuh: ' +
+                    dukuh
+                );
+            }
+
+
+        }
+    );
+
+
+    calendar.render();
+
+});
+</script>
+
+@endpush
