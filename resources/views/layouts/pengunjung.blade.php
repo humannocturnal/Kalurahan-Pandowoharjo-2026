@@ -57,7 +57,27 @@
 
 </head>
 
-<body class="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+@php
+    $isHome = request()->routeIs('home');
+@endphp
+
+<body
+    class="{{ $isHome
+        ? 'bg-white'
+        : 'bg-cover bg-center bg-fixed bg-no-repeat'
+    }}"
+    class="min-h-screen flex flex-col bg-gray-50 text-gray-800"
+    @if (!$isHome)
+        style="
+            background-image:
+                linear-gradient(
+                    rgba(215, 211, 211, 0.8),
+                    rgba(255, 255, 255, 0.80)
+                ),
+                url('{{ asset('images/background/pengunjung-bg.png') }}');
+        "
+    @endif
+>
 
     {{-- ============================================== --}}
     {{-- HEADER --}}
@@ -331,19 +351,194 @@
     </main>
 
 
-    {{-- ============================================== --}}
+   {{-- ================================================= --}}
     {{-- FOOTER --}}
-    {{-- ============================================== --}}
+    {{-- ================================================= --}}
 
-    <footer class="bg-green-800 text-white">
+    <footer class="bg-green-900 text-white">
 
-        <div class="max-w-7xl mx-auto px-4 py-6">
+        <div
+            class="mx-auto max-w-7xl
+                px-4 py-12 sm:px-6 lg:px-8"
+        >
 
-            <p class="text-center text-sm text-green-100">
+            <div
+                class="grid gap-10
+                    md:grid-cols-2
+                    lg:grid-cols-4"
+            >
 
-                &copy; 2026 Kalurahan Pandowoharjo
+                {{-- ====================================== --}}
+                {{-- IDENTITAS --}}
+                {{-- ====================================== --}}
 
-            </p>
+                <div>
+
+                    <div class="flex items-center gap-3">
+
+                        <img
+                            src="{{ asset('images/logicon.png') }}"
+                            alt="Logo Kalurahan Pandowoharjo"
+                            class="h-14 w-14 object-contain"
+                        >
+
+                        <div>
+
+                            <h3 class="font-bold">
+                                Kalurahan Pandowoharjo
+                            </h3>
+
+                            <p class="mt-1 text-xs text-green-200">
+                                Manajemen Agenda dan Kegiatan
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <p
+                        class="mt-5 text-sm leading-6
+                            text-green-100"
+                    >
+                        Sistem informasi agenda dan kegiatan
+                        Kalurahan Pandowoharjo.
+                    </p>
+
+                </div>
+
+
+                {{-- ====================================== --}}
+                {{-- ALAMAT --}}
+                {{-- ====================================== --}}
+
+                <div>
+
+                    <h3
+                        class="mb-4 text-sm font-bold
+                            uppercase tracking-wider"
+                    >
+                        Alamat
+                    </h3>
+
+                    <div
+                        class="flex items-start gap-3
+                            text-sm leading-6
+                            text-green-100"
+                    >
+
+                        <i
+                            class="fa-solid fa-location-dot
+                                mt-1 text-green-300"
+                        ></i>
+
+                        <p>
+                            Jl. Kleben Jl. Pandowoharjo, Kleben Moncosan, Pandowoharjo, Kec. Sleman, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55512
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {{-- ====================================== --}}
+                {{-- INFORMASI --}}
+                {{-- ====================================== --}}
+
+                <div>
+
+                    <h3
+                        class="mb-4 text-sm font-bold
+                            uppercase tracking-wider"
+                    >
+                        Informasi
+                    </h3>
+
+                    <ul class="space-y-3 text-sm">
+
+                        <li>
+
+                            <a
+                                href="{{ url('/kebijakan-privasi') }}"
+                                class="text-green-100
+                                    transition hover:text-white"
+                            >
+                                Kebijakan Privasi
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a
+                                href="{{ url('/syarat-penggunaan') }}"
+                                class="text-green-100
+                                    transition hover:text-white"
+                            >
+                                Syarat Penggunaan
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                {{-- ====================================== --}}
+                {{-- SOSIAL MEDIA --}}
+                {{-- ====================================== --}}
+
+                <div>
+
+                    <h3
+                        class="mb-4 text-sm font-bold
+                            uppercase tracking-wider"
+                    >
+                        Media Sosial
+                    </h3>
+
+                    <a
+                        href="https://www.instagram.com/Kalurahan_pandowoharjo/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex h-11 w-11
+                            items-center justify-center
+                            rounded-xl bg-white/10
+                            text-xl transition
+                            hover:bg-white/20"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            {{-- BOTTOM FOOTER --}}
+
+            <div
+                class="mt-10 flex flex-col gap-3
+                    border-t border-white/10
+                    pt-6 text-sm text-green-200
+                    sm:flex-row
+                    sm:items-center
+                    sm:justify-between"
+            >
+
+                <p>
+                    © {{ date('Y') }}
+                    Kalurahan Pandowoharjo.
+                    Hak cipta dilindungi.
+                </p>
+
+                <p>
+                    Sistem Agenda dan Kegiatan
+                </p>
+
+            </div>
 
         </div>
 
@@ -388,6 +583,177 @@
     <script
         src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const slides =
+                document.querySelectorAll('[data-slide]');
+
+            const dots =
+                document.querySelectorAll('.hero-dot');
+
+            const prevButton =
+                document.getElementById('heroPrev');
+
+            const nextButton =
+                document.getElementById('heroNext');
+
+            if (!slides.length) {
+                return;
+            }
+
+            let currentSlide = 0;
+
+            let autoSlide;
+
+
+            function showSlide(index) {
+
+                if (index < 0) {
+                    index = slides.length - 1;
+                }
+
+                if (index >= slides.length) {
+                    index = 0;
+                }
+
+                currentSlide = index;
+
+
+                slides.forEach(function (slide, i) {
+
+                    if (i === currentSlide) {
+                        slide.classList.remove('opacity-0');
+                        slide.classList.add('opacity-100');
+                    } else {
+                        slide.classList.remove('opacity-100');
+                        slide.classList.add('opacity-0');
+                    }
+
+                });
+
+
+                dots.forEach(function (dot, i) {
+
+                    if (i === currentSlide) {
+                        dot.classList.remove(
+                            'w-2.5',
+                            'bg-white/50'
+                        );
+
+                        dot.classList.add(
+                            'w-8',
+                            'bg-white'
+                        );
+                    } else {
+                        dot.classList.remove(
+                            'w-8',
+                            'bg-white'
+                        );
+
+                        dot.classList.add(
+                            'w-2.5',
+                            'bg-white/50'
+                        );
+                    }
+
+                });
+
+            }
+
+
+            function nextSlide() {
+
+                showSlide(currentSlide + 1);
+
+            }
+
+
+            function previousSlide() {
+
+                showSlide(currentSlide - 1);
+
+            }
+
+
+            function startAutoSlide() {
+
+                autoSlide = setInterval(
+                    nextSlide,
+                    5000
+                );
+
+            }
+
+
+            function resetAutoSlide() {
+
+                clearInterval(autoSlide);
+
+                startAutoSlide();
+
+            }
+
+
+            if (nextButton) {
+
+                nextButton.addEventListener(
+                    'click',
+                    function () {
+
+                        nextSlide();
+
+                        resetAutoSlide();
+
+                    }
+                );
+
+            }
+
+
+            if (prevButton) {
+
+                prevButton.addEventListener(
+                    'click',
+                    function () {
+
+                        previousSlide();
+
+                        resetAutoSlide();
+
+                    }
+                );
+
+            }
+
+
+            dots.forEach(function (dot) {
+
+                dot.addEventListener(
+                    'click',
+                    function () {
+
+                        const index =
+                            parseInt(
+                                this.dataset.dot
+                            );
+
+                        showSlide(index);
+
+                        resetAutoSlide();
+
+                    }
+                );
+
+            });
+
+
+            showSlide(0);
+
+            startAutoSlide();
+
+        });
+        </script>
 
 
     @stack('scripts')

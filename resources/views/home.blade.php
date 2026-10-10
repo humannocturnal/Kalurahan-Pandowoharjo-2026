@@ -86,212 +86,353 @@
 {{-- HERO / SELAMAT DATANG --}}
 {{-- ================================================= --}}
 
-<section class="bg-gradient-to-b from-green-50 to-gray-50 py-14 sm:py-20">
+<section class="bg-gradient-to-b from-green-50 to-gray-50 py-14 sm:py-10">
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mx-auto text-center">
 
-            <div
-                class="inline-flex items-center gap-2
-                       rounded-full bg-green-100
-                       px-4 py-2 text-sm
-                       font-semibold text-green-700"
-            >
-
-                <i class="fa-solid fa-building-columns"></i>
-
-                Informasi Agenda dan Kegiatan
-
-            </div>
-
-            <h1
-                class="mt-6 text-3xl font-bold
-                       leading-tight text-gray-900
-                       sm:text-4xl lg:text-5xl"
-            >
-
                 {{-- ========================================== --}}
                 {{-- HERO + KALENDER --}}
                 {{-- ========================================== --}}
 
-                <section class="mb-10">
+                <section class="mb-5">
 
                     <div class="grid gap-6 xl:grid-cols-3">
 
 
-                        {{-- ====================================== --}}
-                        {{-- SELAMAT DATANG - 2/3 --}}
-                        {{-- ====================================== --}}
+                    {{-- ====================================== --}}
+                    {{-- HERO CAROUSEL - 2/3 --}}
+                    {{-- ====================================== --}}
 
+                    <div
+                        id="heroCarousel"
+                        class="relative min-h-[480px] overflow-hidden
+                            rounded-3xl shadow-lg xl:col-span-2"
+                    >
+
+                        {{-- SLIDE 1 --}}
                         <div
-                            class="relative overflow-hidden
-                                rounded-3xl bg-gradient-to-br
-                                from-green-700 via-green-600
-                                to-green-500
-                                p-7 text-white shadow-sm
-                                sm:p-10 xl:col-span-2"
+                            class="hero-slide absolute inset-0 opacity-100
+                                transition-opacity duration-700"
+                            data-slide
                         >
-
-                            {{-- DECORATION --}}
+                            <img
+                                src="{{ asset('images/hero/slide1.jpg') }}"
+                                alt="Kalurahan Pandowoharjo"
+                                class="absolute inset-0 h-full w-full object-cover"
+                            >
 
                             <div
-                                class="absolute -right-16 -top-16
-                                    h-52 w-52 rounded-full
-                                    bg-white/10"
+                                class="absolute inset-0
+                                    bg-gradient-to-r
+                                    from-black/75 via-black/50
+                                    to-black/20"
                             ></div>
 
                             <div
-                                class="absolute -bottom-20 right-20
-                                    h-44 w-44 rounded-full
-                                    bg-white/10"
-                            ></div>
+                                class="relative z-10 flex min-h-[480px]
+                                    items-center px-8 py-12 sm:px-12"
+                            >
+                                <div class="max-w-2xl text-left text-white">
 
+                                    <span
+                                        class="inline-flex items-center gap-2
+                                            rounded-full bg-white/15
+                                            px-4 py-2 text-sm font-semibold
+                                            backdrop-blur"
+                                    >
+                                        <i class="fa-solid fa-building-columns"></i>
+                                        Sistem Informasi Kalurahan
+                                    </span>
 
-                            <div class="relative z-10 flex h-full flex-col items-center justify-center text-center">
+                                    <h1
+                                        class="mt-5 text-3xl font-bold
+                                            leading-tight sm:text-4xl lg:text-5xl"
+                                    >
+                                        Selamat Datang di Kalurahan Pandowoharjo
+                                    </h1>
 
-                                <div
-                                    class="mb-6 flex h-14 w-14
-                                        items-center justify-center
-                                        rounded-2xl bg-white/15
-                                        text-2xl backdrop-blur"
-                                >
-                                    <i class="fa-solid fa-building-columns"></i>
+                                    <p
+                                        class="mt-5 max-w-xl text-sm
+                                            leading-7 text-gray-100 sm:text-base"
+                                    >
+                                        Temukan informasi agenda dan kegiatan
+                                        yang dilaksanakan di wilayah
+                                        Kalurahan Pandowoharjo.
+                                    </p>
+
                                 </div>
-
-
-                                <p
-                                    class="mb-2 text-sm font-semibold
-                                        uppercase tracking-wider
-                                        text-green-100"
-                                >
-                                    Sistem Informasi
-                                </p>
-
-
-                                <h1
-                                    class="max-w-2xl text-3xl
-                                        font-bold leading-tight
-                                        sm:text-4xl lg:text-5xl"
-                                >
-                                    Selamat Datang di
-                                    Kalurahan Pandowoharjo
-                                </h1>
-
-
-                                <p
-                                    class="mt-5 max-w-2xl
-                                        text-sm leading-7
-                                        text-green-50
-                                        sm:text-base"
-                                >
-                                    Temukan informasi agenda dan kegiatan
-                                    yang dilaksanakan di wilayah
-                                    Kalurahan Pandowoharjo.
-                                </p>
-
-
                             </div>
-
                         </div>
 
 
-
-                        {{-- ====================================== --}}
-                        {{-- FULLCALENDAR - 1/3 --}}
-                        {{-- ====================================== --}}
-
+                        {{-- SLIDE 2 --}}
                         <div
-                            class="rounded-3xl border
-                                border-gray-200
-                                bg-white p-5 shadow-sm"
+                            class="hero-slide absolute inset-0 opacity-0
+                                transition-opacity duration-700"
+                            data-slide
                         >
-
-                            <div class="mb-4">
-
-                                <div class="flex items-center gap-3">
-
-                                    <div
-                                        class="flex h-11 w-11
-                                            items-center justify-center
-                                            rounded-xl bg-green-100
-                                            text-green-700"
-                                    >
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                    </div>
-
-
-                                    <div>
-
-                                        <h2
-                                            class="font-bold text-gray-900"
-                                        >
-                                            Kalender
-                                        </h2>
-
-                                        <p
-                                            class="text-xs text-gray-500"
-                                        >
-                                            Agenda & kegiatan bulan ini
-                                        </p>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            {{-- LEGENDA --}}
-
-                            <div
-                                class="mb-4 flex flex-wrap
-                                    items-center gap-4
-                                    border-y border-gray-100
-                                    py-3 text-xs"
+                            <img
+                                src="{{ asset('images/hero/slide2.jpg') }}"
+                                alt="Agenda Kalurahan"
+                                class="absolute inset-0 h-full w-full object-cover"
                             >
 
-                                <div class="flex items-center gap-2">
+                            <div
+                                class="absolute inset-0
+                                    bg-gradient-to-r
+                                    from-black/75 via-black/45
+                                    to-black/20"
+                            ></div>
+
+                            <div
+                                class="relative z-10 flex min-h-[480px]
+                                    items-center px-8 py-12 sm:px-12"
+                            >
+                                <div class="max-w-2xl text-left text-white">
 
                                     <span
-                                        class="h-3 w-3 rounded-full
-                                            bg-green-600"
-                                    ></span>
-
-                                    <span class="text-gray-600">
-                                        Agenda
+                                        class="inline-flex items-center gap-2
+                                            rounded-full bg-green-600/80
+                                            px-4 py-2 text-sm font-semibold"
+                                    >
+                                        <i class="fa-solid fa-calendar-days"></i>
+                                        Agenda Kalurahan
                                     </span>
 
+                                    <h2
+                                        class="mt-5 text-3xl font-bold
+                                            leading-tight sm:text-4xl lg:text-5xl"
+                                    >
+                                        Ikuti Agenda di Lingkungan Kalurahan
+                                    </h2>
+
+                                    <p
+                                        class="mt-5 max-w-xl text-sm
+                                            leading-7 text-gray-100 sm:text-base"
+                                    >
+                                        Dapatkan informasi jadwal, lokasi,
+                                        dan pelaksanaan agenda masyarakat
+                                        secara mudah.
+                                    </p>
+
                                 </div>
-
-
-                                <div class="flex items-center gap-2">
-
-                                    <span
-                                        class="h-3 w-3 rounded-full
-                                            bg-orange-600"
-                                    ></span>
-
-                                    <span class="text-gray-600">
-                                        Kegiatan
-                                    </span>
-
-                                </div>
-
                             </div>
+                        </div>
 
 
-                            {{-- CALENDAR --}}
+                        {{-- SLIDE 3 --}}
+                        <div
+                            class="hero-slide absolute inset-0 opacity-0
+                                transition-opacity duration-700"
+                            data-slide
+                        >
+                            <img
+                                src="{{ asset('images/hero/slide3.jpg') }}"
+                                alt="Kegiatan Kalurahan"
+                                class="absolute inset-0 h-full w-full object-cover"
+                            >
 
-                            <div id="homeCalendar"></div>
+                            <div
+                                class="absolute inset-0
+                                    bg-gradient-to-r
+                                    from-black/75 via-black/45
+                                    to-black/20"
+                            ></div>
 
+                            <div
+                                class="relative z-10 flex min-h-[480px]
+                                    items-center px-8 py-12 sm:px-12"
+                            >
+                                <div class="max-w-2xl text-left text-white">
+
+                                    <span
+                                        class="inline-flex items-center gap-2
+                                            rounded-full bg-orange-600/90
+                                            px-4 py-2 text-sm font-semibold"
+                                    >
+                                        <i class="fa-solid fa-people-group"></i>
+                                        Kegiatan Kalurahan
+                                    </span>
+
+                                    <h2
+                                        class="mt-5 text-3xl font-bold
+                                            leading-tight sm:text-4xl lg:text-5xl"
+                                    >
+                                        Dokumentasi Kegiatan Masyarakat
+                                    </h2>
+
+                                    <p
+                                        class="mt-5 max-w-xl text-sm
+                                            leading-7 text-gray-100 sm:text-base"
+                                    >
+                                        Lihat berbagai kegiatan yang telah
+                                        dilaksanakan di wilayah
+                                        Kalurahan Pandowoharjo.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- PREVIOUS --}}
+                        <button
+                            type="button"
+                            id="heroPrev"
+                            class="absolute left-4 top-1/2 z-20
+                                flex h-11 w-11 -translate-y-1/2
+                                items-center justify-center
+                                rounded-full bg-black/30
+                                text-white backdrop-blur
+                                transition hover:bg-black/50"
+                            aria-label="Slide sebelumnya"
+                        >
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+
+                        {{-- NEXT --}}
+                        <button
+                            type="button"
+                            id="heroNext"
+                            class="absolute right-4 top-1/2 z-20
+                                flex h-11 w-11 -translate-y-1/2
+                                items-center justify-center
+                                rounded-full bg-black/30
+                                text-white backdrop-blur
+                                transition hover:bg-black/50"
+                            aria-label="Slide berikutnya"
+                        >
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+
+                        {{-- DOTS --}}
+                        <div
+                            id="heroDots"
+                            class="absolute bottom-5 left-1/2 z-20
+                                flex -translate-x-1/2 gap-2"
+                        >
+                            <button
+                                type="button"
+                                data-dot="0"
+                                class="hero-dot h-2.5 w-8 rounded-full bg-white"
+                            ></button>
+
+                            <button
+                                type="button"
+                                data-dot="1"
+                                class="hero-dot h-2.5 w-2.5 rounded-full bg-white/50"
+                            ></button>
+
+                            <button
+                                type="button"
+                                data-dot="2"
+                                class="hero-dot h-2.5 w-2.5 rounded-full bg-white/50"
+                            ></button>
                         </div>
 
                     </div>
 
-                </section>
 
-            </h1>
+
+                    {{-- ====================================== --}}
+                    {{-- FULLCALENDAR - 1/3 --}}
+                    {{-- ====================================== --}}
+
+                    <div
+                        class="rounded-3xl border
+                            border-gray-200
+                            bg-white p-5 shadow-sm"
+                    >
+
+                        <div class="mb-4">
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="flex h-11 w-11
+                                        items-center justify-center
+                                        rounded-xl bg-green-100
+                                        text-green-700"
+                                >
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+
+
+                                <div>
+
+                                    <h2
+                                        class="font-bold text-gray-900"
+                                    >
+                                        Kalender
+                                    </h2>
+
+                                    <p
+                                        class="text-xs text-gray-500"
+                                    >
+                                        Agenda & kegiatan bulan ini
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- LEGENDA --}}
+
+                        <div
+                            class="mb-4 flex flex-wrap
+                                items-center gap-4
+                                border-y border-gray-100
+                                py-3 text-xs"
+                        >
+
+                            <div class="flex items-center gap-2">
+
+                                <span
+                                    class="h-3 w-3 rounded-full
+                                        bg-green-600"
+                                ></span>
+
+                                <span class="text-gray-600">
+                                    Agenda
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex items-center gap-2">
+
+                                <span
+                                    class="h-3 w-3 rounded-full
+                                        bg-orange-600"
+                                ></span>
+
+                                <span class="text-gray-600">
+                                    Kegiatan
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        {{-- CALENDAR --}}
+
+                        <div id="homeCalendar"></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            
 
             <p
                 class="mx-auto mt-6 max-w-2xl
@@ -312,7 +453,7 @@
 {{-- 5 AGENDA TERDEKAT --}}
 {{-- ================================================= --}}
 
-<section class="bg-white py-14 sm:py-16">
+<section class="bg-white py-14 sm:py-10">
 
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 

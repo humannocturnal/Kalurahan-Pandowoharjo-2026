@@ -209,3 +209,12 @@ Route::get('/kegiatan/{id}', [
     'show'
 ])->name('kegiatan.show');
 
+Route::view(
+    '/kebijakan-privasi',
+    'kebijakan-privasi'
+)->name('kebijakan.privasi');
+
+Route::view(
+    '/syarat-penggunaan',
+    'syarat-penggunaan'
+)->name('syarat.penggunaan');
