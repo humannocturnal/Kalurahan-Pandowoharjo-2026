@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Agenda;
 use App\Models\Kegiatan;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -88,18 +89,41 @@ class HomeController extends Controller
             ->get();
 
 
+        return view(
+            'home',
+            compact(
+                'agenda',
+                'kegiatan',
+                
+            )
+        );
+    }
+
+    public function calendarEvents(Request $request)
+    {
+        $start = $request->get('start');
+        $end = $request->get('end');
+
+        $events = [];
+
+
         /*
         |--------------------------------------------------------------------------
-        | FULLCALENDAR EVENTS
+        | AGENDA
         |--------------------------------------------------------------------------
         */
 
-        $calendarEvents = [];
+        $agenda = Agenda::with('dukuh')
+            ->whereDate('tanggal', '>=', $start)
+            ->whereDate('tanggal', '<', $end)
+            ->get();
 
 
-        foreach ($calendarAgenda as $item) {
+        foreach ($agenda as $item) {
 
-            $calendarEvents[] = [
+            $events[] = [
+                'id' => 'agenda-' . $item->id,
+
                 'title' => $item->judul,
 
                 'start' => $item->tanggal->format('Y-m-d'),
@@ -110,23 +134,41 @@ class HomeController extends Controller
                 ),
 
                 'backgroundColor' => '#16a34a',
+
                 'borderColor' => '#16a34a',
+
                 'textColor' => '#ffffff',
 
                 'extendedProps' => [
-                    'type' => 'Agenda',
+                    'type' => 'agenda',
+
                     'lokasi' => $item->lokasi,
+
                     'dukuh' => $item->dukuh
                         ? $item->dukuh->nama_dukuh
-                        : null,
+                        : '-',
                 ],
             ];
         }
 
 
-        foreach ($calendarKegiatan as $item) {
+        /*
+        |--------------------------------------------------------------------------
+        | KEGIATAN
+        |--------------------------------------------------------------------------
+        */
 
-            $calendarEvents[] = [
+        $kegiatan = Kegiatan::with('dukuh')
+            ->whereDate('tanggal', '>=', $start)
+            ->whereDate('tanggal', '<', $end)
+            ->get();
+
+
+        foreach ($kegiatan as $item) {
+
+            $events[] = [
+                'id' => 'kegiatan-' . $item->id,
+
                 'title' => $item->judul,
 
                 'start' => $item->tanggal->format('Y-m-d'),
@@ -137,33 +179,24 @@ class HomeController extends Controller
                 ),
 
                 'backgroundColor' => '#f97316',
+
                 'borderColor' => '#f97316',
+
                 'textColor' => '#ffffff',
 
                 'extendedProps' => [
-                    'type' => 'Kegiatan',
+                    'type' => 'kegiatan',
+
                     'lokasi' => $item->lokasi,
+
                     'dukuh' => $item->dukuh
                         ? $item->dukuh->nama_dukuh
-                        : null,
+                        : '-',
                 ],
             ];
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | VIEW
-        |--------------------------------------------------------------------------
-        */
-
-        return view(
-            'home',
-            compact(
-                'agenda',
-                'kegiatan',
-                'calendarEvents'
-            )
-        );
+        return response()->json($events);
     }
 }

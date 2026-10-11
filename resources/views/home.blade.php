@@ -2,15 +2,13 @@
 
 @push('styles')
 
-<link
-    href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/skeleton.css"
-    rel="stylesheet"
-/>
+<script
+    src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js">
+</script>
 
-<link
-    href="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/themes/classic/theme.css"
-    rel="stylesheet"
-/>
+<script
+    src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.21/locales-all.global.min.js">
+</script>
 
 <style>
 
@@ -350,33 +348,20 @@
 
                         <div class="mb-4">
 
-                            <div class="flex items-center gap-3">
+                            <div class="mb-4 text-center">
 
                                 <div
-                                    class="flex h-11 w-11
+                                    class="mx-auto mb-3 flex h-12 w-12
                                         items-center justify-center
-                                        rounded-xl bg-green-100
+                                        rounded-2xl bg-green-100
                                         text-green-700"
                                 >
                                     <i class="fa-solid fa-calendar-days"></i>
                                 </div>
 
-
-                                <div>
-
-                                    <h2
-                                        class="font-bold text-gray-900"
-                                    >
-                                        Kalender
-                                    </h2>
-
-                                    <p
-                                        class="text-xs text-gray-500"
-                                    >
-                                        Agenda & kegiatan bulan ini
-                                    </p>
-
-                                </div>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Agenda & kegiatan bulan ini
+                                </p>
 
                             </div>
 
@@ -1076,10 +1061,15 @@
 @push('scripts')
 
 {{-- FULLCALENDAR --}}
+@push('scripts')
+
 <script
-    src="https://cdn.jsdelivr.net/npm/fullcalendar@7.1.0/all/global.js">
+    src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.21/index.global.min.js">
 </script>
 
+<script
+    src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.21/locales-all.global.min.js">
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -1087,194 +1077,96 @@ document.addEventListener('DOMContentLoaded', function () {
     const calendarElement =
         document.getElementById('homeCalendar');
 
-
     if (!calendarElement) {
         return;
     }
 
 
-    const events =
-        @json($calendarEvents);
+    const calendar =
+        new FullCalendar.Calendar(
+            calendarElement,
+            {
+                initialView: 'dayGridMonth',
 
+                locale: 'id',
 
-    const calendar = new FullCalendar.Calendar(
-        calendarElement,
-        {
+                headerToolbar: {
+                    left: 'prev',
+                    center: 'title',
+                    right: 'next'
+                },
 
-            /*
-            |--------------------------------------------------------------------------
-            | MONTH VIEW
-            |--------------------------------------------------------------------------
-            */
+                buttonText: {
+                    prev: '<',
+                    next: '>'
+                },
 
-            initialView: 'dayGridMonth',
+                height: 'auto',
 
+                contentHeight: 'auto',
 
-            /*
-            |--------------------------------------------------------------------------
-            | BULAN BERJALAN
-            |--------------------------------------------------------------------------
-            |
-            | Tanpa initialDate khusus, FullCalendar otomatis membuka
-            | tanggal/bulan saat ini.
-            |
-            */
+                fixedWeekCount: false,
 
-            headerToolbar: {
+                displayEventTime: false,
 
-                left: 'prev',
+                dayMaxEvents: 2,
 
-                center: 'title',
+                events: {
+                    url: '{{ route('calendar.events') }}',
+                    method: 'GET',
+                    failure: function () {
+                        console.error('Gagal mengambil data kalender.');
+                    }
+                },
 
-                right: 'next'
+                editable: false,
 
-            },
+                selectable: false,
 
-            headerToolbar: {
-                left: 'prev',
-                center: 'title',
-                right: 'next'
-            },
+                eventClick: function (info) {
 
-            buttonText: {
-                prev: '<',
-                next: '>'
-            },
+                    if (info.event.url) {
 
+                        info.jsEvent.preventDefault();
 
-            /*
-            |--------------------------------------------------------------------------
-            | LOCALE
-            |--------------------------------------------------------------------------
-            */
+                        window.location.href =
+                            info.event.url;
+                    }
+                },
 
-            locale: 'id',
+                eventDidMount: function (info) {
 
+                    const type =
+                        info.event.extendedProps.type ?? '';
 
-            /*
-            |--------------------------------------------------------------------------
-            | UKURAN
-            |--------------------------------------------------------------------------
-            */
+                    const lokasi =
+                        info.event.extendedProps.lokasi ?? '-';
 
-            height: 'auto',
+                    const dukuh =
+                        info.event.extendedProps.dukuh ?? '-';
 
-            contentHeight: 'auto',
-
-            aspectRatio: 1,
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | EVENTS
-            |--------------------------------------------------------------------------
-            */
-
-            events: events,
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | TAMPILKAN MAKSIMAL EVENT
-            |--------------------------------------------------------------------------
-            */
-
-            dayMaxEvents: 2,
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | TIDAK BISA EDIT
-            |--------------------------------------------------------------------------
-            */
-
-            editable: false,
-
-            selectable: false,
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | EVENT CLICK
-            |--------------------------------------------------------------------------
-            */
-
-            eventClick: function (info) {
-
-                /*
-                | URL sudah diberikan dari Laravel.
-                | Biarkan FullCalendar membuka halaman detail.
-                */
-
-                if (info.event.url) {
-
-                    info.jsEvent.preventDefault();
-
-                    window.location.href =
-                        info.event.url;
-
+                    info.el.setAttribute(
+                        'title',
+                        type.charAt(0).toUpperCase() +
+                        type.slice(1) +
+                        ': ' +
+                        info.event.title +
+                        '\nLokasi: ' +
+                        lokasi +
+                        '\nDukuh: ' +
+                        dukuh +
+                        '\nTipe: ' +
+                        type
+                    );
                 }
-
-            },
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | TOOLTIP SEDERHANA
-            |--------------------------------------------------------------------------
-            */
-
-            eventDidMount: function (info) {
-
-                const type =
-                    info.event.extendedProps.type ?? '';
-
-                const lokasi =
-                    info.event.extendedProps.lokasi ?? '-';
-
-                const dukuh =
-                    info.event.extendedProps.dukuh ?? '-';
-
-
-                // WARNA EVENT BERDASARKAN TYPE
-                if (type.toLowerCase() === 'agenda') {
-
-                    info.el.style.color = '#16a34a';
-                    info.el.style.backgroundColor = 'transparent';
-                    info.el.style.borderColor = 'transparent';
-                    info.el.style.fontWeight = '600';
-
-                } else if (type.toLowerCase() === 'kegiatan') {
-
-                    info.el.style.color = '#ea580c';
-                    info.el.style.backgroundColor = 'transparent';
-                    info.el.style.borderColor = 'transparent';
-                    info.el.style.fontWeight = '600';
-
-                }
-
-
-                // TOOLTIP
-                info.el.setAttribute(
-                    'title',
-                    type +
-                    ': ' +
-                    info.event.title +
-                    '\nLokasi: ' +
-                    lokasi +
-                    '\nDukuh: ' +
-                    dukuh
-                );
             }
-
-
-        }
-    );
-
+        );
 
     calendar.render();
 
-});
+}); 
 </script>
+
+@endpush
 
 @endpush

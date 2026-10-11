@@ -218,3 +218,8 @@ Route::view(
     '/syarat-penggunaan',
     'syarat-penggunaan'
 )->name('syarat.penggunaan');
+
+Route::get(
+    '/calendar/events',
+    [HomeController::class, 'calendarEvents']
+)->name('calendar.events');
